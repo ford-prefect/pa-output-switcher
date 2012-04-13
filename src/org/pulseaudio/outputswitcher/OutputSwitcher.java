@@ -17,22 +17,62 @@ package org.pulseaudio.outputswitcher;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.*;
+import android.net.wifi.WifiManager;
+import android.net.wifi.WifiManager.WifiLock;
 
-public class OutputSwitcher extends Activity
+public class OutputSwitcher extends Activity implements RadioGroup.OnCheckedChangeListener
 {
+    private WifiLock wifiLock;
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId)
+    {
+        if (checkedId == R.id.radio_local) {
+            if (switchToLocal())
+                updateStatus("Switched to local playback");
+            else
+                updateStatus("Failed to switch to local playback");
+
+            wifiLock.release();
+        } else {
+            EditText text_server = (EditText) findViewById(R.id.text_server);
+
+            if (switchToNetwork(text_server.getText().toString()))
+                updateStatus("Switched to remote playback on '" + text_server.getText().toString() + "'");
+            else
+                updateStatus("Failed to switch to remote playback on '" + text_server.getText().toString() + "'");
+
+            wifiLock.acquire();
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        RadioGroup group = (RadioGroup) findViewById(R.id.rgroup_output);
+        group.setOnCheckedChangeListener(this);
+
+        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+        wifiLock = wm.createWifiLock(WifiManager.WIFI_MODE_FULL_HIGH_PERF, "PA_WifiLock");
+        wifiLock.setReferenceCounted(false);
     }
 
     /* A native method that is implemented by the
      * 'hello-jni' native library, which is packaged
      * with this application.
      */
-    public native int switchToNetwork();
-    public native int switchToLocal();
+    public native boolean switchToNetwork(String serverName);
+    public native boolean switchToLocal();
+
+    private void updateStatus(String status)
+    {
+        TextView text_status = (TextView) findViewById(R.id.text_status);
+        text_status.setText(status);
+    }
 
     static {
         System.loadLibrary("output-switcher");

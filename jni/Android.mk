@@ -16,7 +16,11 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
+RELATIVE_AOSP_PATH := ../../../source/out/target/product/maguro/obj
+
 LOCAL_MODULE    := output-switcher
 LOCAL_SRC_FILES := output-switcher.c
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(RELATIVE_AOSP_PATH)/include
+LOCAL_LDFLAGS   := -L$(LOCAL_PATH)/$(RELATIVE_AOSP_PATH)/lib -lpulse
 
 include $(BUILD_SHARED_LIBRARY)
