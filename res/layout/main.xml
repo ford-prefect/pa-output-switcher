@@ -24,6 +24,7 @@
 <EditText android:id="@+id/text_server"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:singleLine="true"
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     />
