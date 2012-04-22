@@ -61,10 +61,6 @@ public class OutputSwitcher extends Activity implements CompoundButton.OnChecked
         wifiLock.setReferenceCounted(false);
     }
 
-    /* A native method that is implemented by the
-     * 'hello-jni' native library, which is packaged
-     * with this application.
-     */
     public native boolean switchToNetwork(String serverName);
     public native boolean switchToLocal();
 
