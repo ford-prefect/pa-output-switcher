@@ -3,19 +3,28 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     >
 <Switch android:id="@+id/switch_remote"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Remote playback"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
     />
 <TextView android:id="@+id/text_status"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="Enter a hostname or IP address for remote playback"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
     />
 <EditText android:id="@+id/text_server"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
     />
 </LinearLayout>
