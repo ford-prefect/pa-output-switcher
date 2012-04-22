@@ -28,4 +28,16 @@
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     />
+<TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Recent servers"
+    android:paddingTop="16dp"
+    />
+<ListView android:id="@android:id/list"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    />
 </LinearLayout>
