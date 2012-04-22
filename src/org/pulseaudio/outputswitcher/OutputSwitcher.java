@@ -21,14 +21,14 @@ import android.widget.*;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiManager.WifiLock;
 
-public class OutputSwitcher extends Activity implements RadioGroup.OnCheckedChangeListener
+public class OutputSwitcher extends Activity implements CompoundButton.OnCheckedChangeListener
 {
     private WifiLock wifiLock;
 
     @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId)
+    public void onCheckedChanged(CompoundButton sw, boolean isChecked)
     {
-        if (checkedId == R.id.radio_local) {
+        if (!isChecked) {
             if (switchToLocal())
                 updateStatus("Switched to local playback");
             else
@@ -53,8 +53,8 @@ public class OutputSwitcher extends Activity implements RadioGroup.OnCheckedChan
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        RadioGroup group = (RadioGroup) findViewById(R.id.rgroup_output);
-        group.setOnCheckedChangeListener(this);
+        Switch sw = (Switch) findViewById(R.id.switch_remote);
+        sw.setOnCheckedChangeListener(this);
 
         WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
         wifiLock = wm.createWifiLock(WifiManager.WIFI_MODE_FULL_HIGH_PERF, "PA_WifiLock");

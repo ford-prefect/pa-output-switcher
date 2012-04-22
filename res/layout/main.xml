@@ -4,27 +4,17 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<EditText android:id="@+id/text_server"
+<Switch android:id="@+id/switch_remote"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:text="Remote playback"
     />
-<RadioGroup android:id="@+id/rgroup_output"
+<TextView android:id="@+id/text_status"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
-    <RadioButton android:id="@+id/radio_local"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Local"
-        />
-    <RadioButton android:id="@+id/radio_remote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Remote"
-        />
-</RadioGroup>
-<TextView android:id="@+id/text_status"
+    android:text="Enter a hostname or IP address for remote playback"
+    />
+<EditText android:id="@+id/text_server"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     />
