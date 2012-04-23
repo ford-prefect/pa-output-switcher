@@ -64,6 +64,10 @@ public class OutputSwitcher extends ListActivity implements CompoundButton.OnChe
     {
         EditText text_server = (EditText) findViewById(R.id.text_server);
         text_server.setText(((TextView) view).getText().toString());
+
+        Switch sw = (Switch) findViewById(R.id.switch_remote);
+        sw.setChecked(false);
+        sw.setChecked(true);
     }
 
     @Override
