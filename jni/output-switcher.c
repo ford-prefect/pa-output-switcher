@@ -92,6 +92,17 @@ static void context_subscribe_cb(pa_context *c, pa_subscription_event_type_t t, 
         ((t & PA_SUBSCRIPTION_EVENT_TYPE_MASK) == PA_SUBSCRIPTION_EVENT_REMOVE)) {
         if (u->remote_sink_idx == idx) {
             /* Module went away */
+            /* XXX: Let the UI know */
+            u->remote_sink_idx = 0;
+            u->module_idx = 0;
+            pa_xfree(u->server_name);
+            u->server_name = NULL;
+        }
+    } else if (((t & PA_SUBSCRIPTION_EVENT_FACILITY_MASK) == PA_SUBSCRIPTION_EVENT_MODULE) &&
+        ((t & PA_SUBSCRIPTION_EVENT_TYPE_MASK) == PA_SUBSCRIPTION_EVENT_REMOVE)) {
+        if (u->module_idx == idx) {
+            /* Module went away */
+            /* XXX: Let the UI know */
             u->remote_sink_idx = 0;
             u->module_idx = 0;
             pa_xfree(u->server_name);
