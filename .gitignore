@@ -1,0 +1,7 @@
+bin/
+gen/
+libs/
+obj/
+default.properties
+local.properties
+project.properties
