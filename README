@@ -1,0 +1,12 @@
+This is a simple program to switch PulseAudio output between your device and
+laptop. The code is very raw and ugly, but is out there to demonstrate how
+simple doing such this is, with PulseAudio. There are a lot of TODOs (marked
+with XXXs in comments), and terrible coding practices (don't look at the use of
+the configuration system!).
+
+To build, you will need to fix up RELATIVE_AOSP_PATH in jni/Android.mk. This
+eventually needs to be fixed up to take the path to the AOSP[1] build (with
+PulseAudio support[2]) via an environment variable.
+
+[1] http://source.android.com/source/index.html
+[2] http://www.freedesktop.org/wiki/Software/PulseAudio/Ports/Android
